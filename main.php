@@ -26,7 +26,8 @@ include 'model/Book.php';
                 	<tr><td  style="font-weight: bold; color:bisque">Type the name of the book..</td></tr>
                 	<tr><td><input class="input-txt" name="search_text" type="text" size="40"/></td></tr>
                     <tr><td><button class="btn" type="search" name="search" >Search</button></td></tr>
-					<tr><td><button class="btn" type="showAll" name="showAll" > Show all books</button></td></tr>
+					<tr><td><a href="http://localhost:8080/Php-domaci/view.php" button class="btn" type="showAll" name="showAll" >Show all books</a></button></td></tr>
+					
 					</tr>
                 </table>
             	</form>
@@ -38,16 +39,17 @@ include 'model/Book.php';
 			</tr>
         </table>
 		<table width="90%" cellpadding="10" cellspacing="10" align="center" >
-            	<tr>
-					<td height="50%" valign="top">
+            	
+					<td height="50%" valign="top" width="50%">
                     	<form name="add_form">
             				<table id="table" cellpadding="5" cellspacing="5" align="center" style="text-align: center;" >
                 				<tr><td id="heading"><b>Books</b></td></tr>
                     			<tr><td>Name:<br/><input class="input-txt" id="bookName" type="text" name="naziv" size="40" /></td></tr>          
                     			<tr><td>Author:<br/> 
-								<select id="author">
+								<select id="author" style="background: #fff; color: #333; border-radius: 5px 5px 5px 5px; width:330px; height:30px; margin-top:1%;  font-family: 'Abel', sans-serif;">
+									<option value="" disabled selected hidden>Choose an author</option>
 								<?php
-
+								
 								$query = "SELECT * FROM `author`";
 								$result = mysqli_query($conn, $query);
 								while ($row = mysqli_fetch_array($result)){
@@ -65,11 +67,8 @@ include 'model/Book.php';
                     			<tr><td><button type="button" class="btn" onclick="addBook('insert');">Insert book</button></td></tr>
                 			</table>
             			</form>
-                        </td><td id="books" width="50%"><div id="displayData"></div></td>
-            	</tr>
-        </table>
-		<table width="90%" cellpadding="10" cellspacing="10" align="center">
-				<tr><td height="50%" valign="top">
+					</td>
+					<td height="50%" valign="top">
                     	<form name="add_Author">
             				<table id="table" cellpadding="5" cellspacing="5" align="center" style="text-align: center;" >
                 				<tr><td id="heading"><b>Authors</b></td></tr>
@@ -79,8 +78,8 @@ include 'model/Book.php';
 								<tr><td><button type="button" class="btn" onclick="addAuthor('insert');">Insert author</button></td></tr>
                 			</table>
             			</form>
-                        </td><td id="books" width="50%"><div id="displayData"></div></td>
-            	</tr>
+					</td>
+            	
         </table>
         </div>
 	</div>

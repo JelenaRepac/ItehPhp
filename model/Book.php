@@ -28,4 +28,14 @@ class Book{
         return $conn-> query($query);
     }
     
+
+    public static function getAllBooks(mysqli $conn, $column=null, $order='ASC'){
+        if($column==null || $column==""){
+            $query="select * from book;";}
+            else{
+           
+              $query='select * from book ORDER BY '.  $column .' ' . $order;
+            }
+            return $conn->query($query);
+    }
 }

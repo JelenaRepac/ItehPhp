@@ -20,6 +20,9 @@ a img {
     
     background-size: contain;
 }
+a,button {
+    all: unset;
+}
 
 #table{
     background-color:sienna;
@@ -110,22 +113,6 @@ a img {
     opacity: .8;
     
 }
-
-#resultDiv { 
-    width: 90%;
-    margin-top: 20px;   
-}
-
-
-/* Submits */
-.submits {
-    width: 48%;
-    display: inline-block;
-  
-    margin-left: 2%;
-    margin-top: 5%;
-}
-
 
 
 /* buttons hover */
