@@ -31,11 +31,17 @@ class Book{
 
     public static function getAllBooks(mysqli $conn, $column=null, $order='ASC'){
         if($column==null || $column==""){
-            $query="select * from book;";}
+            $query="SELECT * FROM book;";}
             else{
            
               $query='select * from book ORDER BY '.  $column .' ' . $order;
             }
             return $conn->query($query);
+    }
+
+
+    public static function deleteBook(mysqli $conn, $book){
+        $query="DELETE FROM book WHERE id=$book->id";
+        return $conn->query($query);
     }
 }

@@ -54,7 +54,7 @@ include 'model/Book.php';
 								$result = mysqli_query($conn, $query);
 								while ($row = mysqli_fetch_array($result)){
 									// Add a new option to the combo-box
-									echo "<option value='$row[id]'>$row[name]</option> ";
+									echo "<option value='$row[id]'>$row[name] $row[lastname]</option> ";
 
 								}
 								?>

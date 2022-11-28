@@ -100,7 +100,7 @@ require 'model/Book.php';
             <td>$row[pages]</td>
             <td>$row[cover]</td>
           <td> <button class=' btn btn-update' onclick='getTypeDetails($row[id]);' style='width:150px !important;height:30px; background-color:bisque; margin-top:1px; color:#333;'>Change book info</button>
-          <button class=' btn btn-delete' onclick='deleteTreatmentType($row[id]);' style='width:150px !important;height:30px; background-color:bisque; margin-top:1px; color:#333;'>Delete book</button></td>
+          <button class=' btn btn-delete' onclick='deleteBook($row[id]);' style='width:150px !important;height:30px; background-color:bisque; margin-top:1px; color:#333;'>Delete book</button></td>
           </tr>
           ";
                             $num = $num + 1;
@@ -115,6 +115,42 @@ require 'model/Book.php';
         
     </div>
     </div>
-</body>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script>
+        function deleteBook(id){
+            if(confirm("Book will be deleted. Are you sure you want to delete it?")){
+
+                $req=$.ajax({
+                    url:"deleteBook.php",
+                    type: 'post',
+                    data:{
+                        'deleteSend':id
+                    }
+                });
+                $req.done(function(res, textStatus, jqXHR) {
+                    if (res == "Success") {
+
+                        location.reload(true);
+                        
+                      
+
+
+                    } else {
+                        console.log("Book isnt deleted " + res);
+                    
+                    }
+
+                });
+
+                $req.fail(function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error ' + textStatus, errorThrown);
+                })
+            }
+        }
+        </script>
+    </body>
+</html>
