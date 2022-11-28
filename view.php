@@ -1,6 +1,7 @@
 <?php
 require 'connection/DBBroker.php';
 require 'model/Book.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,9 +19,9 @@ require 'model/Book.php';
 <body>
     <div class="modal fade" id="izmeniTModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" style="background-color:sienna;  background-color:sienna; box-shadow: 0 9px 50px hsla(22, 79%, 87%, 0.801); opacity: .9; border-radius: 5px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Change book info</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: bisque">Change book info</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -55,8 +56,8 @@ require 'model/Book.php';
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Otkazi</button>
-                        <button type="button" class="btn btn-add" onclick="updateTreatmentType()">Izmeni</button>
+                        <button type="button" class="btn btn-cancel"style='width:100px !important;height:30px; background-color:bisque; margin-top:1px; color:#333' data-bs-dismiss="modal">Otkazi</button>
+                        <button type="button" class="btn btn-add" style='width:100px !important;height:30px; background-color:bisque; margin-top:1px; color:#333' onclick="updateBookInfo()">Izmeni</button>
                     </div>
 
                 </div>
@@ -75,13 +76,13 @@ require 'model/Book.php';
                 <table class="table">
                     <thead class="thead-light">
                         <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Author</th>
-                            <th scope="col">Publisher</th>
-                            <th scope="col">ISBN</th>
-                            <th scope="col">Page number</th>
-                            <th scope="col">Cover</th>
+                            <th scope="col" style="color: bisque">Id</th>
+                            <th scope="col" style="color: bisque" >Name</th>
+                            <th scope="col" style="color: bisque" >Author</th>
+                            <th scope="col" style="color: bisque" >Publisher</th>
+                            <th scope="col" style="color: bisque" >ISBN</th>
+                            <th scope="col" style="color: bisque" >Page number</th>
+                            <th scope="col" style="color: bisque" >Cover</th>
 
                         </tr>
                     </thead>
@@ -94,12 +95,12 @@ require 'model/Book.php';
                             echo "<tr>
             <td>$num</td>
             <td>$row[name]</td>
-            <td>$row[authorId]</td>
+            <td>$num</td>
             <td>$row[publisher]</td>
             <td>$row[ISBN]</td>
             <td>$row[pages]</td>
             <td>$row[cover]</td>
-          <td> <button class=' btn btn-update' onclick='getTypeDetails($row[id]);' style='width:150px !important;height:30px; background-color:bisque; margin-top:1px; color:#333;'>Change book info</button>
+          <td> <button class=' btn btn-update' onclick='getBookDetails($row[id]);' style='width:150px !important;height:30px; background-color:bisque; margin-top:1px; color:#333;'>Change book info</button>
           <button class=' btn btn-delete' onclick='deleteBook($row[id]);' style='width:150px !important;height:30px; background-color:bisque; margin-top:1px; color:#333;'>Delete book</button></td>
           </tr>
           ";
@@ -133,12 +134,7 @@ require 'model/Book.php';
                 });
                 $req.done(function(res, textStatus, jqXHR) {
                     if (res == "Success") {
-
                         location.reload(true);
-                        
-                      
-
-
                     } else {
                         console.log("Book isnt deleted " + res);
                     
@@ -150,6 +146,71 @@ require 'model/Book.php';
                     console.error('Error ' + textStatus, errorThrown);
                 })
             }
+        }
+        
+
+        function getBookDetails(id) {
+            $.post("updateBookInfo.php", {
+                id: id
+            }, function(data, status) {
+                var bookId = JSON.parse(data);
+                $('#hidden').val(id);
+                $('#izmeninaziv').val(bookId.name);
+                $('#izmeniautora').val(bookId.author);
+                $('#izmenipublikaciju').val(bookId.published);
+                $('#izmeniisbn').val(bookId.isbn);
+                $('#izmenistrane').val(bookId.pages);
+                $('#izmenikoricu').val(bookId.cover);
+                $('#hidden').val(id);
+
+            });
+            $('#izmeniTModal').modal("show");
+
+        }
+
+        function updateBookInfo(){
+            
+            var name=$("#izmeninaziv").val();
+            var author=$("#izmeniautora").val();
+            var published=$("#izmenipublikaciju").val();
+            var isbn=$("#izmeniisbn").val();
+            var pages=$("#izmenistrane").val();
+            var cover=$("#izmenikoricu").val();
+            var id=$('#hidden').val();
+
+            $req = $.ajax({
+                url: "updateBookInfo.php",
+                type: 'post',
+                data: {
+                    'idSend': id,
+                    'nameSend': name,
+                    'authorSend':author,
+                    'publishedSend':published,
+                    'isbnSend':isbn,
+                    'pagesSend':pages,
+                    'coverSend':cover,
+                },
+                success: function(data, status) {
+
+                },
+
+            });
+            $req.done(function(res, textStatus, jqXHR) {
+                if (res == "Success") {
+                    alert("Book info is succesfully changed!");
+                    location.reload(true);
+
+
+                } else {
+                    console.log("Book info wasnt changed " + res);
+                    
+                }
+
+            });
+
+            $req.fail(function(jqXHR, textStatus, errorThrown) {
+                console.error('Error> ' + textStatus, errorThrown);
+            })
         }
         </script>
     </body>

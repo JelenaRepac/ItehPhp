@@ -1,6 +1,6 @@
 <?php
-include 'connection/DBBroker.php';
-include 'model/Book.php';
+require 'connection/DBBroker.php';
+require 'model/Book.php';
 
 if(isset($_POST['deleteSend'])){
     $delete=$_POST['deleteSend'];

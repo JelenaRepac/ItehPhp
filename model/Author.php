@@ -19,4 +19,9 @@ class Author{
         ('','$name','$lastname');";
         return $conn->query($query);
     }
+
+    public static function getAuthorById($id,$conn){
+        $query='SELECT * FROM author WHERE id'.$id;
+        return $conn->query($query);
+    }
 }

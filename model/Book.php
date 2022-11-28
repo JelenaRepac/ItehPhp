@@ -44,4 +44,10 @@ class Book{
         $query="DELETE FROM book WHERE id=$book->id";
         return $conn->query($query);
     }
+
+
+    public static function selectById($id,mysqli $conn){
+        $query="select * from book where id=$id";
+        return $conn->query($query);
+    }
 }
