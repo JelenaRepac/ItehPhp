@@ -44,20 +44,20 @@ include 'model/Book.php';
             				<table id="table" cellpadding="5" cellspacing="5" align="center" style="text-align: center;" >
                 				<tr><td id="heading"><b>Books</b></td></tr>
                     			<tr><td>Name:<br/><input class="input-txt" id="bookName" type="text" name="naziv" size="40" /></td></tr>          
-                    			<tr><td>Author:<br/><input class="input-txt" id="author" type="text" name="autor" size="40" /></td></tr> 
-								<!-- <select id="author">
+                    			<tr><td>Author:<br/> 
+								<select id="author">
 								<?php
 
-								/*query = "SELECT * FROM `author`";
+								$query = "SELECT * FROM `author`";
 								$result = mysqli_query($conn, $query);
 								while ($row = mysqli_fetch_array($result)){
 									// Add a new option to the combo-box
 									echo "<option value='$row[id]'>$row[name]</option> ";
 
-								}*/
+								}
 								?>
 								
-								</select> -->
+								</select></td></tr>
                     			<tr><td>Publisher:<br/><input class="input-txt" id="publisher" type="text" name="izdavac" size="40" /></td></tr>
                     			<tr><td>ISBN:<br/><input class="input-txt" id="isbn" type="text" name="isbn" size="40" /></td></tr>
                     			<tr><td>Page number:<br/><input  class="input-txt" id="pageNmb" type="text" name="brojst" size="40" /></td></tr>
@@ -88,7 +88,7 @@ include 'model/Book.php';
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     </script>
-<script>
+<script type="text/javascript">
 
 function addAuthor(action){
     $(document).ready(function(){
@@ -109,19 +109,18 @@ function addAuthor(action){
     });
 }
 
-
 function addBook(action){
 	$(document).ready(function(){
 		var data={
 			action: action,
-			bookName:$("#bookName").val();
-			author:$("#author").val();
-			publisher:$("#publisher").val();
-			isbn:$("#isbn").val();
-			pageNumber:$("#pageNmb").val();
-			cover:$("#cover").val();
+			bookName:$("#bookName").val(),
+			author:$("#author").val(),
+			publisher:$("#publisher").val(),
+			isbn:$("#isbn").val(),
+			pageNmb:$("#pageNmb").val(),
+			cover:$("#cover").val()
 			
-		}
+		};
 		$.ajax({
 			url: 'connection/addBook.php',
 			type: 'post',

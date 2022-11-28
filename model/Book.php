@@ -21,10 +21,11 @@ class Book{
     }
 
 
-    public static function saveBook($name,$publisher,$ISBN,$pages,$cover,$authorId,$conn)
+    public static function saveBook($name,$publisher,$isbn,$pages,$cover,$author,$conn)
     {
         $query="INSERT INTO book
-        VALUES ('','$name','$publisher','$ISBN','$pages','$cover','$authorId');";
+        VALUES ('','$name','$publisher','$isbn','$pages','$cover','$author');";
         return $conn-> query($query);
     }
+    
 }

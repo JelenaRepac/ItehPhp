@@ -20,7 +20,6 @@ function insert(){
 
     $status=Book::saveBook($name,$publisher,$isbn,$pageNumber,$cover,$author,$conn);
 
-
     if($status){
         echo "Inserting book succesfully!";
 
