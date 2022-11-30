@@ -1,6 +1,7 @@
 <?php
-require 'connection/DBBroker.php';
-require 'model/Book.php';
+include 'connection/DBBroker.php';
+include 'model/Book.php';
+include 'model/Author.php';
 
 ?>
 <!DOCTYPE html>
@@ -27,37 +28,56 @@ require 'model/Book.php';
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="mb-3">
+                            <input type="hidden" class="form-control" id="idKnjige" >
                             <label for="izmeninaziv" class="form-label">Name:</label>
-                            <input type="text" class="form-control" id="izmeninaziv" value="">
+                            <input type="text" class="form-control" id="naziv" >
                         </div>
                         <div class="mb-3">
-                            <label for="izmeninaziv" class="form-label">Author:</label>
-                            <input type="text" class="form-control" id="izmeninaziv" value="">
+                            <label for="izmeniautora" class="form-label">Author:</label>
+                            <select name="author" id="autor" style="background: #fff; color: #333; border-radius: 5px 5px 5px 5px; width:330px; height:30px; margin-top:1%;  font-family: 'Abel', sans-serif;">
+                            <option value="" disabled selected hidden>
+                            <?php
+								
+								$query = "SELECT * FROM `author`";
+								$result = mysqli_query($conn, $query);
+								while ($row = mysqli_fetch_array($result)){
+									// Add a new option to the combo-box
+									echo "<option value='$row[id]'>$row[nameA] $row[lastname]</option> ";
+
+								}
+								?>
+                            </option>
+								
+                            </select>
                         </div>
-                        <div class="mb-3 sel">
-                            <label for="izmenicenu" class="form-label">Publisher:</label>
-                            <input type="text" class="form-control" id="izmenicenu" value="">
+                    
+                        <div class="mb-3">
+                            <label for="izmenipublikaciju" class="form-label">Publisher:</label>
+                            <input type="text" class="form-control" id="publikacija">
+                            
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="izmeniisbn" class="form-label">ISBN:</label>
+                            <input type="text" class="form-control" id="isbn" >
+                            
+                        </div>
+                        <div class="mb-3">
+                            <label for="izmenistranice" class="form-label">Page number:</label>
+                            <input type="text" class="form-control" id="stranice" >
+                            
+                        </div>
+                        <div class="mb-3">
+                            <label for="izmenikoricu" class="form-label">Cover:</label>
+                            <input type="text" class="form-control" id="korica" >
                             <input type="hidden" id="hidden">
+                           
                         </div>
-                        <div class="mb-3 sel">
-                            <label for="izmenicenu" class="form-label">ISBN:</label>
-                            <input type="text" class="form-control" id="izmenicenu" value="">
-                            <input type="hidden" id="hidden">
-                        </div>
-                        <div class="mb-3 sel">
-                            <label for="izmenicenu" class="form-label">Page number:</label>
-                            <input type="text" class="form-control" id="izmenicenu" value="">
-                            <input type="hidden" id="hidden">
-                        </div>
-                        <div class="mb-3 sel">
-                            <label for="izmenicenu" class="form-label">Cover:</label>
-                            <input type="text" class="form-control" id="izmenicenu" value="">
-                            <input type="hidden" id="hidden">
-                        </div>
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-cancel"style='width:100px !important;height:30px; background-color:bisque; margin-top:1px; color:#333' data-bs-dismiss="modal">Otkazi</button>
-                        <button type="button" class="btn btn-add" style='width:100px !important;height:30px; background-color:bisque; margin-top:1px; color:#333' onclick="updateBookInfo()">Izmeni</button>
+                        <button type="button" class="btn btn-add" style='width:100px !important;height:30px; background-color:bisque; margin-top:1px; color:#333' onclick="updateBook()">Izmeni</button>
                     </div>
 
                 </div>
@@ -71,12 +91,13 @@ require 'model/Book.php';
             <div class="container knjige">
                 <h2>Sve knjige</h2>
             </div>
+           
             <br>
             <div id="displayTypeTable" style="width:1500px;">
                 <table class="table">
                     <thead class="thead-light">
                         <tr>
-                            <th scope="col" style="color: bisque">Id</th>
+                            <th scope="col" style="color: bisque">Redni br</th>
                             <th scope="col" style="color: bisque" >Name</th>
                             <th scope="col" style="color: bisque" >Author</th>
                             <th scope="col" style="color: bisque" >Publisher</th>
@@ -87,25 +108,43 @@ require 'model/Book.php';
                         </tr>
                     </thead>
                     <tbody>
-                    <?php
+                        <?php
                         $num = 1;
+                       
+
                         $result = Book::getAllBooks($conn);
                         while ($row = mysqli_fetch_array($result)) {
-                            // Add a new option to the combo-box
-                            echo "<tr>
-            <td>$num</td>
-            <td>$row[name]</td>
-            <td>$num</td>
-            <td>$row[publisher]</td>
-            <td>$row[ISBN]</td>
-            <td>$row[pages]</td>
-            <td>$row[cover]</td>
-          <td> <button class=' btn btn-update' onclick='getBookDetails($row[id]);' style='width:150px !important;height:30px; background-color:bisque; margin-top:1px; color:#333;'>Change book info</button>
-          <button class=' btn btn-delete' onclick='deleteBook($row[id]);' style='width:150px !important;height:30px; background-color:bisque; margin-top:1px; color:#333;'>Delete book</button></td>
-          </tr>
-          ";
+                           $authorId=$row["authorId"];
+                           $name=$row["name"];
+                           $resultA = Author::getAuthorById($authorId,$conn);
+                           while ($rowA = mysqli_fetch_array($resultA)){
+                            
+                            $authorName=$rowA['nameA'];
+                            $authorLastname=$rowA['lastname'];
+                           }
+                           ?>
+                             <tr>
+                                <td><?php echo $num?></td>
+                                <td><?php echo $row["name"] ?> </td>
+                                <td> <?php echo $authorName?> <?php echo $authorLastname?></td>
+                                <td><?php echo $row["publisher"] ?></td>
+                                <td><?php echo $row["ISBN"] ?></td>
+                                <td><?php echo $row["pages"] ?></td>
+                                <td><?php echo $row["cover"] ?></td>
+                            
+                            <?php 
+                            echo 
+                                "<td> <button class=' btn btn-update' onclick='getBookDetails(\"$row[name]\",\"$row[publisher]\",\"$row[ISBN]\",\"$row[cover]\",$row[pages],$row[id]);'
+                                 style='width:150px !important;height:30px; background-color:bisque; margin-top:1px; color:#333;'>Change book info</button>
+                                <button class=' btn btn-delete' onclick='deleteBook($row[id]);'
+                                style='width:150px !important;height:30px; background-color:bisque; margin-top:1px; color:#333;'>Delete book</button></td>
+                                </tr>
+                                <?php ";
                             $num = $num + 1;
-                        } ?>
+                            
+                        }
+                         ?>
+                        
                     
 
                     </tbody>
@@ -120,13 +159,14 @@ require 'model/Book.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
-    <script>
+    
+    <script type="text/javascript">
+        //BRSANJE KNJIGE
         function deleteBook(id){
             if(confirm("Book will be deleted. Are you sure you want to delete it?")){
 
                 $req=$.ajax({
-                    url:"deleteBook.php",
+                    url:'connection/deleteBook.php',
                     type: 'post',
                     data:{
                         'deleteSend':id
@@ -148,70 +188,47 @@ require 'model/Book.php';
             }
         }
         
-
-        function getBookDetails(id) {
-            $.post("updateBookInfo.php", {
-                id: id
-            }, function(data, status) {
-                var bookId = JSON.parse(data);
-                $('#hidden').val(id);
-                $('#izmeninaziv').val(bookId.name);
-                $('#izmeniautora').val(bookId.author);
-                $('#izmenipublikaciju').val(bookId.published);
-                $('#izmeniisbn').val(bookId.isbn);
-                $('#izmenistrane').val(bookId.pages);
-                $('#izmenikoricu').val(bookId.cover);
-                $('#hidden').val(id);
-
-            });
+        //PREUZIMANJE INFO O KNJIZI
+        function getBookDetails(name,publisher,isbn,cover,pages,id) {
+            document.getElementById("naziv").value=name;
+            document.getElementById("publikacija").value=publisher;
+            document.getElementById("isbn").value=isbn;
+            document.getElementById("korica").value=cover;
+            document.getElementById("stranice").value=pages;
+            document.getElementById("hidden").value=id;
             $('#izmeniTModal').modal("show");
-
         }
-
-        function updateBookInfo(){
-            
-            var name=$("#izmeninaziv").val();
-            var author=$("#izmeniautora").val();
-            var published=$("#izmenipublikaciju").val();
-            var isbn=$("#izmeniisbn").val();
-            var pages=$("#izmenistrane").val();
-            var cover=$("#izmenikoricu").val();
-            var id=$('#hidden').val();
-
-            $req = $.ajax({
-                url: "updateBookInfo.php",
+    
+        //AZURIRANJE INFORMACIJA O KNJIZI
+       function updateBook(){
+            $(document).ready(function(){
+		        var data={
+                
+                nameSend:$("#naziv").val(),
+                authorSend:$("#autor").val(),
+                publisherSend:$("#publikacija").val(),
+                isbnSend:$("#isbn").val(),
+                pagesSend:$("#stranice").val(),
+                coverSend:$("#korica").val(),
+                idSend:$("#hidden").val()
+			
+            };
+            $.ajax({
+                url: 'connection/updateBook.php',
                 type: 'post',
-                data: {
-                    'idSend': id,
-                    'nameSend': name,
-                    'authorSend':author,
-                    'publishedSend':published,
-                    'isbnSend':isbn,
-                    'pagesSend':pages,
-                    'coverSend':cover,
-                },
-                success: function(data, status) {
-
-                },
-
-            });
-            $req.done(function(res, textStatus, jqXHR) {
-                if (res == "Success") {
-                    alert("Book info is succesfully changed!");
+                data: data,
+                success: function(response){
+                    alert(response);
                     location.reload(true);
-
-
-                } else {
-                    console.log("Book info wasnt changed " + res);
-                    
                 }
-
             });
-
-            $req.fail(function(jqXHR, textStatus, errorThrown) {
-                console.error('Error> ' + textStatus, errorThrown);
-            })
+            });
         }
         </script>
+
+       
+        
+
+        
     </body>
 </html>

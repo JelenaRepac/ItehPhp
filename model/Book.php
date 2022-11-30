@@ -47,7 +47,14 @@ class Book{
 
 
     public static function selectById($id,mysqli $conn){
-        $query="select * from book where id=$id";
+        $query="SELECT * FROM book WHERE id=$id";
         return $conn->query($query);
     }
+
+    public static function updateBook(mysqli $conn, $b){
+        $query="UPDATE book SET name='$b->name', publisher='$b->publisher', isbn='$b->ISBN', pages='$b->pages',cover='$b->cover',authorId='$b->author' WHERE id='$b->id'";
+          return $conn->query($query);
+      }
+      
+      
 }

@@ -1,30 +1,20 @@
-/* Fonts Form Google Font ::- https://fonts.google.com/  -:: */
-@import url('https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur');
-/* End Fonts */
-/* Start Global rules */
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-/* End Global rules */
 
-/* Start body rules */
 body {
    
     background: url(../images/pozadinaSajta.jpg); 
     background-repeat: no-repeat;
     background-size: cover; 
     
-    font-family: 'Vibur', cursive;
-/*   the main font */
-    font-family: 'Abel', sans-serif;
+    font-family: 'Playfair Display', serif;
     opacity: .95;
 }
 
-/* End body rules */
-
-/* Start form  attributes */
 #frmID{
     width: 400px;
     min-height: 500px;
@@ -33,9 +23,9 @@ body {
     margin: 2% auto;
     box-shadow: 0 9px 50px hsla(22, 79%, 87%, 0.801);
     padding: 2%;
-    background-color: bisque;
+    background-color: sienna;
 }
-/* form Container */
+
 form .con {
     display: -webkit-flex;
     display: flex;
@@ -49,35 +39,27 @@ form .con {
       margin: 0 auto;
 }
 
-/* the header form form */
 header {
     margin: 2% auto 10% auto;
     text-align: center;
+    color: bisque;
 }
-/* Login title form form */
+
 header h2 {
     font-size: 250%;
     font-family: 'Playfair Display', serif;
-    color: #000000;
+    color:bisque;
 }
-/*  A welcome message or an explanation of the login form */
 header p {letter-spacing: 0.05em;}
-
-
-/* //////////////////////////////////////////// */
-/* //////////////////////////////////////////// */
-
 
 .input-item {
     background: #fff;
     color: #333;
-    padding: 14.5px 0px 15px 9px;
     border-radius: 5px 0px 0px 5px;
-    
-    
+    font-family: 'Playfair Display', serif;
 }
 
-/* Show/hide password Font Icon */
+
 #eye {
     background: #fff;
     color: #333;
@@ -95,42 +77,40 @@ header p {letter-spacing: 0.05em;}
     
     cursor: pointer;
 }
-/* inputs form  */
+
 input[class="form-input"]{
-    width: 250px;
-    height: 50px;
+    width: 270px;
+    height: 40px;
   
     margin-top: 5%;
-    padding:13px;
+    margin-right: 25px;
+    padding: 10px;
     
-    font-size: 16px;
-    font-family: 'Abel', sans-serif;
-    color: #5E6472;
+    font-size: 14px;
+   
+    color: #d7dce9;
   
     outline: none;
     border: none;
   
-    border-radius: 0px 5px 5px 0px;
+    border-radius: 5px 5px 5px 5px;
     transition: 0.2s linear;
+    font-family: 'Playfair Display', serif;
     
 }
-input[id="txt-input"] {width: 250px;}
-/* focus  */
+input[id="txt-input"] {width: 270px;}
+
 input:focus {
     transform: translateX(-2px);
     border-radius: 5px;
 }
 
-/* //////////////////////////////////////////// */
-/* //////////////////////////////////////////// */
 
-/* input[type="text"] {min-width: 250px;} */
-/* buttons  */
 .log-in {
     display: inline-block;
     color: #252537;
   
-    width: 250px;
+    width: 270px;
     height: 50px;
   
     padding: 0 20px;
@@ -146,27 +126,15 @@ input:focus {
     
     margin-top: 20%;
     letter-spacing: 0.05em;
-    
-}
-/* Submits */
-.submits {
-    width: 48%;
-    display: inline-block;
-  
-    margin-left: 2%;
-    margin-top: 5%;
+    font-family: 'Playfair Display', serif;
 }
 
 
-
-
-/* buttons hover */
 button:hover {
     transform: translatey(3px);
     box-shadow: none;
 }
 
-/* buttons hover Animation */
 button:hover {
     animation: ani9 0.4s ease-in-out infinite alternate;
 }

@@ -1,6 +1,6 @@
 <?php
-require 'connection/DBBroker.php';
-require 'model/Book.php';
+require 'DBBroker.php';
+require 'C:\xampp\htdocs\Php-domaci\model\Book.php';
 
 if(isset($_POST['deleteSend'])){
     $delete=$_POST['deleteSend'];

@@ -42,24 +42,16 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             <h2>Log In</h2>
             <p>login here using your username and password</p>
          </header>
-        
          <br>
          <div class="field-set">
-
-           
             <span class="input-item">
                <i class="fa fa-user-circle"></i>
             </span>
-           
             <input class="form-input" id="txt-input" name="username" type="text" placeholder="UserName" required>
-
             <br>
-
-           
             <span class="input-item">
                <i class="fa fa-key"></i>
             </span>
-            
             <input class="form-input" type="password" placeholder="Password" id="pwd" name="password" required>
             <br>
             <button class="log-in" type="submit" name="submit">Log In</button>

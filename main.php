@@ -13,7 +13,7 @@ include 'model/Book.php';
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
-<body onload="printXML()">
+<body>
 	<div id="heder">
 	</div>
 	<div class="main">
@@ -26,9 +26,8 @@ include 'model/Book.php';
                 	<tr><td  style="font-weight: bold; color:bisque">Type the name of the book..</td></tr>
                 	<tr><td><input class="input-txt" name="search_text" type="text" size="40"/></td></tr>
                     <tr><td><button class="btn" type="search" name="search" >Search</button></td></tr>
-					<tr><td><a href="http://localhost:8080/Php-domaci/view.php" button class="btn" type="showAll" name="showAll" >Show all books</a></button></td></tr>
+					<tr><td><a href="http://localhost:8080/Php-domaci/view.php" button  class="btn" type="showAll" name="showAll" style="text-decoration:none; display:block">Show all books</a></button></td></tr>					
 					
-					</tr>
                 </table>
             	</form>
                 <div id="resultDiv"></div>
@@ -54,7 +53,7 @@ include 'model/Book.php';
 								$result = mysqli_query($conn, $query);
 								while ($row = mysqli_fetch_array($result)){
 									// Add a new option to the combo-box
-									echo "<option value='$row[id]'>$row[name] $row[lastname]</option> ";
+									echo "<option value='$row[id]'>$row[nameA] $row[lastname]</option> ";
 
 								}
 								?>
@@ -103,6 +102,7 @@ function addAuthor(action){
             data: data,
             success: function(response){
                 alert(response);
+				location.reload(true);
             }
         });
     });
@@ -126,6 +126,8 @@ function addBook(action){
 			data: data,
 			success: function(response){
 				alert(response);
+				location.reload(true);
+				
 			}
     	});
 	});
