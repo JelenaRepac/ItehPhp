@@ -24,4 +24,14 @@ class Author{
         $query="SELECT * FROM author WHERE id=$id";
         return $conn->query($query);
     }
+
+    public static function getAllAuthors($conn){
+        $query = "SELECT * FROM author";
+        return $conn->query($query);
+    }
+
+    public static function deleteAuthor($conn, $author){
+        $query = "DELETE FROM author WHERE id=$author->id";
+        return $conn->query($query);
+    }
 }

@@ -89,7 +89,7 @@ include 'model/Author.php';
 
         <div class="div-table">
             <div class="container knjige">
-                <h2>Sve knjige</h2>
+                <h2>All books</h2>
             </div>
            
             <br>

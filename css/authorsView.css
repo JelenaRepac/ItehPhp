@@ -5,7 +5,7 @@ body {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    margin-bottom: 700px;
+    margin-bottom: 600px;
 }
 
 
@@ -17,15 +17,39 @@ body {
     height:100%;
 }
 
-
 .knjige{
+    margin-left: 250px;
     color: bisque;
 }
 
 .table{
     background-color:sienna;
-    width: 90%;
+    width: 50%;
+    margin-left: 250px;
     box-shadow: 0 9px 50px hsla(22, 79%, 87%, 0.801);
     opacity: .9;
     border-radius: 5px;
+}
+
+
+#prezimeAutora,#imeAutora{
+    
+    pointer-events: none; 
+    background: #fff;
+    color: #333;
+    border-radius: 5px 5px 5px 5px;
+
+    width: 150px;
+    height: 3px;
+  
+    padding:13px;
+    
+    font-size: 14px;
+    font-family: 'Abel', sans-serif;
+  
+    outline: none;
+    border: none;
+  
+    transition: 0.2s linear;
+    
 }

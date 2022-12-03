@@ -26,7 +26,8 @@ include 'model/Book.php';
                 	<tr><td  style="font-weight: bold; color:bisque">Type the name of the book..</td></tr>
                 	<tr><td><input class="input-txt" name="search_text" type="text" size="40"/></td></tr>
                     <tr><td><button class="btn" type="search" name="search" >Search</button></td></tr>
-					<tr><td><a href="http://localhost:8080/Php-domaci/view.php" button  class="btn" type="showAll" name="showAll" style="text-decoration:none; display:block">Show all books</a></button></td></tr>					
+					<tr><td><a href="http://localhost:8080/Php-domaci/view.php" button  class="btn" type="showAll" name="showAllBooks" style="text-decoration:none; display:block">Show all books</a></button></td></tr>					
+					<tr><td><a href="http://localhost:8080/Php-domaci/authorsView.php" button  class="btn" type="showAll" name="showAllAuthors" style="text-decoration:none; display:block">Show all authors</a></button></td></tr>					
 					
                 </table>
             	</form>
