@@ -17,24 +17,7 @@ include 'model/Book.php';
 	<div id="heder">
 	</div>
 	<div class="main">
-		<div class="pageContainer" style="margin-bottom: 50px;">
-        <table width="90%" cllpadding="10" cellspacing="10" align="center" >
-        	<tr>
-            <td width="50%" style="vertical-align: top;">
-                <form>
-            	<table cellpadding="5" cellspacing="5">
-                	<tr><td  style="font-weight: bold; color:bisque">Type the name of the book..</td></tr>
-                	<tr><td><input class="input-txt" name="search_text" type="text" size="40"/></td></tr>
-                    <tr><td><button class="btn" type="search" name="search" >Search</button></td></tr>
-                </table>
-            	</form>
-                <div id="resultDiv"></div>
-            </td>
-            </tr>
-			<tr>
-				
-			</tr>
-        </table>
+
 		<table width="90%" cellpadding="10" cellspacing="10" align="center" >
             	
 					<td height="50%" valign="top" width="50%">
