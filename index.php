@@ -27,6 +27,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   
 	<title>LogIn</title>
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 
@@ -39,6 +40,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
       <div class="con">
         
          <header class="head-form">
+         <img src="images/logo.jpg" style="width: 300px;height: 180px; 
+    box-shadow: 0 9px 100px hsla(22, 79%, 87%, 0.801);">
             <h2>Log In</h2>
             <p>login here using your username and password</p>
          </header>

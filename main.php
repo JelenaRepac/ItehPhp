@@ -45,7 +45,7 @@ include 'model/Book.php';
                     			<tr><td>Page number:<br/><input  class="input-txt" id="pageNmb" type="text" name="brojst" size="40" /></td></tr>
 								<tr><td>Cover:<br/><input class="input-txt" id="cover" type="text" name="povez" size="40" /></td></tr>
                     			<tr><td><button type="button" class="btn" onclick="addBook('insert');">Insert book</button></td></tr>
-								<tr><td><a href="http://localhost:8080/Php-domaci/view.php" button  class="btn" type="showAll" name="showAllBooks" style="text-decoration:none; display:block; background-color: bisque; margin-left:90px">Show all books</a></button></td></tr>					
+								<tr><td><a href="http://localhost:8080/Php-domaci/view.php" button  class="btn" type="showAll" name="showAllBooks" style="text-decoration:none; display:block; background-color: bisque; margin-left:95px">Show all books</a></button></td></tr>					
 						</table>
             			</form>
 					</td>
@@ -56,7 +56,7 @@ include 'model/Book.php';
                     			<tr><td>Name:<br/><input class="input-txt" id="name" value="" type="text"  size="40" /></td></tr>                   
                     			<tr><td>Lastname:<br/><input class="input-txt" id="lastName" value="" type="text"  size="40" /></td></tr>
 								<tr><td><button type="button" class="btn" onclick="addAuthor('insert');">Insert author</button></td></tr>
-								<tr><td><a href="http://localhost:8080/Php-domaci/authorsView.php" button  class="btn" type="showAll" name="showAllAuthors" style="text-decoration:none; display:block; background-color: bisque; margin-left:88px">Show all authors</a></button></td></tr>					
+								<tr><td><a href="http://localhost:8080/Php-domaci/authorsView.php" button  class="btn" type="showAll" name="showAllAuthors" style="text-decoration:none; display:block; background-color: bisque; margin-left:93px">Show all authors</a></button></td></tr>					
 					
                 			</table>
             			</form>

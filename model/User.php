@@ -17,6 +17,13 @@ class User{
     $query="select * from user where username='$username' && password='$password'";
     return $conn->query($query);
   }
+
+  public static function insertUser($username,$password,mysqli $conn){
+    $query = "INSERT INTO user VALUES
+    ('','$username','$password');";
+    return $conn->query($query);
+
+  }
   
 
 }

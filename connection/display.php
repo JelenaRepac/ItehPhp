@@ -9,12 +9,12 @@ $num = 1;
 $table = '<table class="table" id="sortTable" style="position:relative; width:800px; margin-left:540px">
     <thead>
       <tr>
-        <th scope="col">Redni Br</th>
-        <th><id="knjige">Book</th>
-        <th><id="knjige">Publisher</th>
-        <th><id="knjige">Isbn</th>
-        <th><id="knjige">Page number</th>
-        <th><id="knjige">Cover</th>
+        <th scope="col"></th>
+        <th><id="knjige"  style="color: bisque">Book</th>
+        <th><id="knjige"  style="color: bisque" >Publisher</th>
+        <th><id="knjige"  style="color: bisque" >Isbn</th>
+        <th><id="knjige"  style="color: bisque" >Page number</th>
+        <th><id="knjige"  style="color: bisque" >Cover</th>
        
       </tr>
     </thead>';

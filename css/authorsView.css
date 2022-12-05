@@ -11,22 +11,22 @@ body {
 
 .main-div{
     margin-top: 10px;
-    grid-template-columns: 50% 50% !important;
+    grid-template-columns: 80% 20% !important;
     position:relative;
     width:100%;
     height:100%;
 }
 
-.knjige{
-    margin-left: 250px;
+.author{
+    margin-left: 380px;
     color: bisque;
 }
 
 .table{
     background-color:sienna;
     width: 50%;
-    margin-left: 250px;
     box-shadow: 0 9px 50px hsla(22, 79%, 87%, 0.801);
+    margin-left: 380px;
     opacity: .9;
     border-radius: 5px;
 }
@@ -53,3 +53,4 @@ body {
     transition: 0.2s linear;
     
 }
+

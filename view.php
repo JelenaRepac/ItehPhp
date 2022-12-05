@@ -85,7 +85,7 @@ include 'model/Author.php';
                 <table class="table" id="table">
                     <thead class="thead-light">
                         <tr>
-                            <th scope="col" style="color: bisque">Redni br</th>
+                            <th scope="col" style="color: bisque"></th>
                             <th scope="col" style="color: bisque" >Name</th>
                             <th scope="col" style="color: bisque" >Author</th>
                             <th scope="col" style="color: bisque" >Publisher</th>
@@ -124,9 +124,9 @@ include 'model/Author.php';
                             echo 
                                 "<td> <button class=' btn btn-update' onclick='getBookDetails(\"$row[name]\",\"$row[publisher]\",\"$row[ISBN]\",\"$row[cover]\",$row[pages],$row[id],\"$authorName\",\"$authorLastname\");'
                                  style='width:150px !important;height:30px; background-color:bisque; margin-top:1px; color:#333;'>Change book info</button>
-                                <button class=' btn btn-delete' onclick='deleteBook($row[id]);'
-                                style='width:150px !important;height:30px; background-color:bisque; margin-top:1px; color:#333;'>Delete book</button></td>
-                                </tr>
+                                 <button class=' btn btn-delete' onclick='deleteBook($row[id]);'
+                                 style='width:50px !important;height:30px; margin-left: 20px'><img src='images/delete.png' style='width: 25px;height: 25px;'></button></td>
+                                 </tr>
                                 <?php ";
                             $num = $num + 1;
                             

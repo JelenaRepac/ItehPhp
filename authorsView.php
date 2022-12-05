@@ -22,7 +22,7 @@ include 'model/Author.php';
         <div class="modal-dialog"  style="width:320px">
             <div class="modal-content" style="background-color:sienna;  background-color:sienna; box-shadow: 0 9px 50px hsla(22, 79%, 87%, 0.801); opacity: .9; border-radius: 5px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color: bisque">Authors books</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: bisque">Books</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                 </div>
@@ -34,14 +34,14 @@ include 'model/Author.php';
                             <label for="izmeninaziv" class="form-label">Name:</label>
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="nameFields" id="imeAutora" >
+                            <input type="text" class="nameFields" id="imeAutora" style="width: 280px;">
                         </div>
                         <div class="mb-3">
                             <label for="izmeniautora" class="form-label">Lastname:</label>
                         </div>
                         <div class="mb-3">
                             <form name="form" action="" method="post">    
-                                <input type="text" class="nameFields" id="prezimeAutora" name="prezime" >
+                                <input type="text" class="nameFields" id="prezimeAutora" name="prezime" style="width: 280px;">
                             </form>
                         </div>	
                     
@@ -57,19 +57,19 @@ include 'model/Author.php';
     
     <div class="container main-div">
         <div class="div-table">
-            <div class="container knjige">
-                <h2>All authors <button type="button" class="btn" onclick="sortTable()" style=" border-color: bisque;"><img src="images/sort.png" style="width: 25px;height: 25px;"></button></h2>
+            <div class="container">
+                <h2 class="author">All authors <button type="button" class="btn" onclick="sortTable()" style=" border-color: bisque;"><img src="images/sort.png" style="width: 25px;height: 25px;"></button></h2>
                 
                
             </div>
             
            
             <br>
-            <div id="displayTypeTable" style="width:1300px;">
+            <div id="displayTypeTable" style="width:1000px;">
                 <table class="table" id="table">
                     <thead class="thead-light">
                         <tr>
-                            <th scope="col" style="color: bisque">Redni br</th>
+                            <th scope="col" style="color: bisque"></th>
                             <th scope="col" style="color: bisque" >Name</th>
                             <th scope="col" style="color: bisque" >Lastname</th>
                         </tr>
@@ -92,9 +92,9 @@ include 'model/Author.php';
                             <?php 
                             echo 
                                 "<td> <button class=' btn btn-update' onclick='seeBooks(\"$rowA[nameA]\",\"$rowA[lastname]\",$rowA[id]);'
-                                 style='width:50px !important;height:30px; background-color:bisque; margin-right:10px;  color:#333;'><img src='images/books.png' style='width: 25px;height: 25px;'></button>
+                                 style='width:150px !important;height:30px; background-color:bisque; margin-right:10px;  color:#333;'>Show all books</button>
                                 <button class=' btn btn-delete' onclick='deleteAuthor($rowA[id]);'
-                                style='width:150px !important;height:30px; background-color:bisque; color:#333;'>Delete author</button></td>
+                                style='width:40px !important;height:30px; margin-left:20px'><img src='images/delete.png' style='width: 25px;height: 25px;'></button></td>
                                 </tr>
                                 <?php ";
                             
