@@ -34,4 +34,11 @@ class Author{
         $query = "DELETE FROM author WHERE id=$author->id";
         return $conn->query($query);
     }
+
+
+   
+
+
+    
+
 }

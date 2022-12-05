@@ -19,7 +19,7 @@ $table = '<table class="table" id="sortTable" style="position:relative; width:80
       </tr>
     </thead>';
 
-
+$message = '<label class="nameFields" id="message" style="position:relative; margin-left:780px; color:bisque;" > Author doesnt have any books in library.</label>';
 $result = Book::selectByAuthorId($_POST['id'], $conn);
 
 
@@ -51,9 +51,13 @@ while ($row = mysqli_fetch_assoc($result)) {
       </tr>';
   $num++;
 }
-$table .= "</table>";
-echo $table;
-
+if($num==1){
+  $message .= "</label>";
+  echo $message;
+} else {
+  $table .= "</table>";
+  echo $table;
+}
 
 
 ?>

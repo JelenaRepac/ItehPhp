@@ -30,27 +30,13 @@ include 'model/Author.php';
                         <div class="mb-3">
                             <input type="hidden" class="form-control" id="idKnjige" >
                             <label for="izmeninaziv" class="form-label">Name:</label>
-                            <input type="text" class="form-control" id="naziv" >
+                            <input type="text" class="form-control"  id="naziv" >
                         </div>
                         <div class="mb-3">
-                            <label for="izmeniautora" class="form-label">Author:</label>
-                            <select name="author" id="autor" style="background: #fff; color: #333; border-radius: 5px 5px 5px 5px; width:330px; height:30px; margin-top:1%;  font-family: 'Abel', sans-serif;">
-                            <option value="" disabled selected hidden>
-                            <?php
-								
-								$query = "SELECT * FROM `author`";
-								$result = mysqli_query($conn, $query);
-								while ($row = mysqli_fetch_array($result)){
-									// Add a new option to the combo-box
-									echo "<option value='$row[id]'>$row[nameA] $row[lastname]</option> ";
-
-								}
-								?>
-                            </option>
-								
-                            </select>
+                            <label for="izmeniautora" class="form-label">Autor:</label>
+                            <input type="text" class="form-control" readonly="readonly" id="autor">
                         </div>
-                    
+                        
                         <div class="mb-3">
                             <label for="izmenipublikaciju" class="form-label">Publisher:</label>
                             <input type="text" class="form-control" id="publikacija">
@@ -89,12 +75,14 @@ include 'model/Author.php';
 
         <div class="div-table">
             <div class="container knjige">
-                <h2>All books</h2>
+                <h2>All books <button type="button" class="btn" onclick="sortTable()" style=" border-color: bisque;"><img src="images/sort.png" style="width: 25px;height: 25px;"></button></h2>
+                </h2>	
             </div>
-           
+            
+            
             <br>
             <div id="displayTypeTable" style="width:1500px;">
-                <table class="table">
+                <table class="table" id="table">
                     <thead class="thead-light">
                         <tr>
                             <th scope="col" style="color: bisque">Redni br</th>
@@ -134,7 +122,7 @@ include 'model/Author.php';
                             
                             <?php 
                             echo 
-                                "<td> <button class=' btn btn-update' onclick='getBookDetails(\"$row[name]\",\"$row[publisher]\",\"$row[ISBN]\",\"$row[cover]\",$row[pages],$row[id]);'
+                                "<td> <button class=' btn btn-update' onclick='getBookDetails(\"$row[name]\",\"$row[publisher]\",\"$row[ISBN]\",\"$row[cover]\",$row[pages],$row[id],\"$authorName\",\"$authorLastname\");'
                                  style='width:150px !important;height:30px; background-color:bisque; margin-top:1px; color:#333;'>Change book info</button>
                                 <button class=' btn btn-delete' onclick='deleteBook($row[id]);'
                                 style='width:150px !important;height:30px; background-color:bisque; margin-top:1px; color:#333;'>Delete book</button></td>
@@ -189,12 +177,13 @@ include 'model/Author.php';
         }
         
         //PREUZIMANJE INFO O KNJIZI
-        function getBookDetails(name,publisher,isbn,cover,pages,id) {
+        function getBookDetails(name,publisher,isbn,cover,pages,id,authorName,authorLastname) {
             document.getElementById("naziv").value=name;
             document.getElementById("publikacija").value=publisher;
             document.getElementById("isbn").value=isbn;
             document.getElementById("korica").value=cover;
             document.getElementById("stranice").value=pages;
+            document.getElementById("autor").value=authorName+" "+authorLastname;
             document.getElementById("hidden").value=id;
             $('#izmeniTModal').modal("show");
         }
@@ -223,6 +212,29 @@ include 'model/Author.php';
                 }
             });
             });
+        }
+        //SORTIRAJ KNJIGE
+        function sortTable() {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById("table");
+            switching = true;
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[1];
+                    y = rows[i + 1].getElementsByTagName("TD")[1];
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
         }
         </script>
 

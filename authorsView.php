@@ -24,6 +24,7 @@ include 'model/Author.php';
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel" style="color: bisque">Authors books</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -40,7 +41,7 @@ include 'model/Author.php';
                         </div>
                         <div class="mb-3">
                             <form name="form" action="" method="post">    
-                                <input type="text" class="nameFields" id="prezimeAutora" name="prezime" value="Car Loan">
+                                <input type="text" class="nameFields" id="prezimeAutora" name="prezime" >
                             </form>
                         </div>	
                     
@@ -55,21 +56,24 @@ include 'model/Author.php';
     </div>
     
     <div class="container main-div">
-
         <div class="div-table">
             <div class="container knjige">
-                <h2>All authors</h2>
+                <h2>All authors <button type="button" class="btn" onclick="sortTable()" style=" border-color: bisque;"><img src="images/sort.png" style="width: 25px;height: 25px;"></button></h2>
+                
+               
             </div>
+            
            
             <br>
             <div id="displayTypeTable" style="width:1300px;">
-                <table class="table">
+                <table class="table" id="table">
                     <thead class="thead-light">
                         <tr>
                             <th scope="col" style="color: bisque">Redni br</th>
                             <th scope="col" style="color: bisque" >Name</th>
                             <th scope="col" style="color: bisque" >Lastname</th>
                         </tr>
+                        
                     </thead>
                     <tbody>
                         <?php
@@ -88,7 +92,7 @@ include 'model/Author.php';
                             <?php 
                             echo 
                                 "<td> <button class=' btn btn-update' onclick='seeBooks(\"$rowA[nameA]\",\"$rowA[lastname]\",$rowA[id]);'
-                                 style='width:150px !important;height:30px; background-color:bisque; margin-right:10px;  color:#333;'>See books</button>
+                                 style='width:50px !important;height:30px; background-color:bisque; margin-right:10px;  color:#333;'><img src='images/books.png' style='width: 25px;height: 25px;'></button>
                                 <button class=' btn btn-delete' onclick='deleteAuthor($rowA[id]);'
                                 style='width:150px !important;height:30px; background-color:bisque; color:#333;'>Delete author</button></td>
                                 </tr>
@@ -102,9 +106,10 @@ include 'model/Author.php';
                     
 
                     </tbody>
-                </table>
-            </div>
 
+                </table>
+                
+            </div>
         </div>
         
     </div>
@@ -171,6 +176,29 @@ include 'model/Author.php';
 
             }
             });
+        }
+        //SORTIRAJ AUTORE
+        function sortTable() {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById("table");
+            switching = true;
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[1];
+                    y = rows[i + 1].getElementsByTagName("TD")[1];
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
         }
         </script>
         
