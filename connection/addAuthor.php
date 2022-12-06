@@ -8,19 +8,23 @@ if(isset($_POST["action"])){
 }
 
 function insert(){
-    global $conn;
+    if($_POST["name"]=="" || $_POST["lastname"]==""){
+        echo "You must insert values for name and lastname...";
+    } else {
+        global $conn;
 
-    $name=$_POST["name"];
-    $lastname=$_POST["lastname"];
-    $status= Author::saveAuthor($name,$lastname, $conn);
-    
-    if($status){
-        echo "Inserting author succesfully!";
+        $name = $_POST["name"];
+        $lastname = $_POST["lastname"];
+        $status = Author::saveAuthor($name, $lastname, $conn);
 
-    }else{
-        echo $status;
-        echo "Failed";
-        
+        if ($status) {
+            echo "Inserting author succesfully!";
+
+        } else {
+            echo $status;
+            echo "Failed";
+
+        }
     }
 
 }

@@ -11,13 +11,11 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
    $korisnik = new User(1, $uname, $upass);
    $odgovor = User::logInUser($uname, $upass, $conn);
    if ($odgovor->num_rows == 1) {
-      echo "<script> console.log('Uspesno ste se prijavili!') </script>";
-     
       $_SESSION['user_id'] = $korisnik->id;
       header('Location: main.php');
       exit();
    } else {
-      echo "Neuspšna prijava.";
+      echo "Check your credentials and try again.";
    }
 }
 ?>

@@ -44,6 +44,7 @@ include 'model/Author.php';
                                 <input type="text" class="nameFields" id="prezimeAutora" name="prezime" style="width: 280px;">
                             </form>
                         </div>	
+                       
                     
                     </div>
                     
@@ -135,10 +136,10 @@ include 'model/Author.php';
                 });
                 $req.done(function(res, textStatus, jqXHR) {
                     if (res == "Success") {
+                        alert("Author is deleted successfully!")
                         location.reload(true);
                     } else {
                         alert("Author has books and can't be deleted.");
-                        console.log("Author can't be deleted " + res);
                     
                     }
 
@@ -200,6 +201,8 @@ include 'model/Author.php';
                 }
             }
         }
+
+        
         </script>
         
     </body>

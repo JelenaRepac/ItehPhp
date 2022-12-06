@@ -34,7 +34,20 @@ include 'model/Author.php';
                         </div>
                         <div class="mb-3">
                             <label for="izmeniautora" class="form-label">Autor:</label>
-                            <input type="text" class="form-control" readonly="readonly" id="autor">
+                            <select id="author" style="background: #fff; color: #333; border-radius: 5px 5px 5px 5px; width:330px; height:30px; margin-top:1%;  font-family: 'Abel', sans-serif;">
+									<option id="autor"></option>
+								<?php
+								
+								$query = "SELECT * FROM `author`";
+								$result = mysqli_query($conn, $query);
+								while ($row = mysqli_fetch_array($result)){
+									// Add a new option to the combo-box
+									echo "<option value='$row[id]'>$row[nameA] $row[lastname]</option> ";
+
+								}
+								?>
+								
+								</select></td></tr>
                         </div>
                         
                         <div class="mb-3">
@@ -62,8 +75,7 @@ include 'model/Author.php';
                         
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-cancel"style='width:100px !important;height:30px; background-color:bisque; margin-top:1px; color:#333' data-bs-dismiss="modal">Otkazi</button>
-                        <button type="button" class="btn btn-add" style='width:100px !important;height:30px; background-color:bisque; margin-top:1px; color:#333' onclick="updateBook()">Izmeni</button>
+                        <button type="button" class="btn btn-add" style='width:100px !important;height:30px; background-color:bisque; margin-top:1px; color:#333' onclick="updateBook()">Change</button>
                     </div>
 
                 </div>
@@ -162,9 +174,10 @@ include 'model/Author.php';
                 });
                 $req.done(function(res, textStatus, jqXHR) {
                     if (res == "Success") {
+                        alert("Book is deleted successfully!");
                         location.reload(true);
                     } else {
-                        console.log("Book isnt deleted " + res);
+                        alert("Book isnt deleted, try again");
                     
                     }
 
@@ -183,7 +196,6 @@ include 'model/Author.php';
             document.getElementById("isbn").value=isbn;
             document.getElementById("korica").value=cover;
             document.getElementById("stranice").value=pages;
-            document.getElementById("autor").value=authorName+" "+authorLastname;
             document.getElementById("hidden").value=id;
             $('#izmeniTModal').modal("show");
         }
@@ -192,9 +204,8 @@ include 'model/Author.php';
        function updateBook(){
             $(document).ready(function(){
 		        var data={
-                
                 nameSend:$("#naziv").val(),
-                authorSend:$("#autor").val(),
+                authorSend:$("#author").val(),
                 publisherSend:$("#publikacija").val(),
                 isbnSend:$("#isbn").val(),
                 pagesSend:$("#stranice").val(),
@@ -207,8 +218,9 @@ include 'model/Author.php';
                 type: 'post',
                 data: data,
                 success: function(response){
-                    alert(response);
-                    location.reload(true);
+                        alert("Successfully updated book info!");
+                        location.reload(true);
+                    
                 }
             });
             });
